@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  button.RippleBtn {
+    @apply relative bg-sky-500 text-white p-4 rounded-md overflow-hidden transition-transform;
+  }
+  span.RippleSpan {
+    @apply rounded-full absolute z-10 -translate-x-1/2 -translate-y-1/2 left-0 top-0;
+  }
+}
+button.RippleBtn {
+  transition-duration: var(--active-scale-duration);
+}
+button.RippleBtn:active {
+  transform: scale(var(--active-scale));
+}
+span.RippleSpan {
+  aspect-ratio: 1 / 1.2;
+  animation: ripple;
+  animation-duration: var(--active-ripple-duration);
+  animation-direction: alternate;
+  animation-timing-function: ease-out;
+}
+@keyframes ripple {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  65% {
+    opacity: 0;
+  }
+  100% {
+    width: 300%;
+    opacity: 0;
+  }
+}
